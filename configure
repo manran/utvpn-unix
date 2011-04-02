@@ -1,0 +1,77 @@
+#!/bin/sh
+
+echo '-------------------------------------------------------------'
+echo 'SoftEther UT-VPN for Unix'
+echo
+echo 'Copyright (C) 2004-2010 SoftEther Corporation.'
+echo 'Copyright (C) 2004-2010 University of Tsukuba, Japan.'
+echo 'Copyright (C) 2003-2010 Daiyuu Nobori. All Rights Reserved.'
+echo
+echo 'This program is free software; you can redistribute it and/or'
+echo 'modify it under the terms of the GNU General Public License'
+echo 'version 2 as published by the Free Software Foundation.'
+echo '-------------------------------------------------------------'
+echo
+
+echo 'Please select your Operating System below:'
+echo ' 1: Linux'
+echo ' 2: FreeBSD'
+echo ' 3: Solaris'
+echo ' 4: Mac OS X'
+echo
+echo 'Which is your operating system (1-4): '
+read TMP
+echo
+OS=""
+if test "$TMP" = "1"
+then
+	OS="linux"
+fi
+if test "$TMP" = "2"
+then
+	OS="freebsd"
+fi
+if test "$TMP" = "3"
+then
+	OS="solaris"
+fi
+if test "$TMP" = "4"
+then
+	OS="macos"
+fi
+
+if test "$OS" = ""
+then
+	echo "Wrong number."
+	exit 1
+fi
+
+echo 'Please select your CPU Bits below:'
+echo ' 1: 32-bit'
+echo ' 2: 64-bit'
+echo
+echo 'Which is the bits of your CPU (1-2): '
+read TMP
+echo
+CPU=""
+if test "$TMP" = "1"
+then
+	CPU="32bit"
+fi
+if test "$TMP" = "2"
+then
+	CPU="64bit"
+fi
+
+if test "$CPU" = ""
+then
+	echo "Wrong number."
+	exit 1
+fi
+
+LANGUAGE="ja"
+
+cp makefiles/${OS}_${CPU}_${LANGUAGE}.mak Makefile
+
+echo "Makefile is generated. Please execute 'make' to build UT-VPN."
+
